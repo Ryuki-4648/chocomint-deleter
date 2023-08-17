@@ -17,7 +17,13 @@ function App() {
       </header>
       <p className="text-xl">上から降ってくるチョコミントをクリックしよう</p>
       {imageList.map((item) => (
-        <img key={item.id} src={item.path} alt="" onClick={handleClick} />
+        <img
+          key={item.id}
+          src={item.path}
+          alt=""
+          onClick={handleClick}
+          className="falling-image"
+        />
       ))}
     </div>
   );
