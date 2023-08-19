@@ -7,11 +7,3 @@
   animation: falling 5s linear infinite;
   cursor: pointer;
 }
-@keyframes falling {
-  from {
-    transform: translateY(-100%);
-  }
-  to {
-    transform: translateY(100vh);
-  }
-}
