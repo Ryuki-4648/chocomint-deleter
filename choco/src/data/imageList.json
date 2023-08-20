@@ -18,5 +18,17 @@
   {
     "id": 5,
     "path": "./img/img05.png"
+  },
+  {
+    "id": 6,
+    "path": "./img/img06.png"
+  },
+  {
+    "id": 7,
+    "path": "./img/img07.png"
+  },
+  {
+    "id": 8,
+    "path": "./img/img08.png"
   }
 ]

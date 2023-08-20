@@ -4,6 +4,11 @@
 
 .falling-image {
   position: absolute;
-  animation: falling 5s linear infinite;
+  animation: falling 3s linear infinite;
   cursor: pointer;
+}
+@keyframes falling {
+  to {
+    transform: translateY(100vh);
+  }
 }
