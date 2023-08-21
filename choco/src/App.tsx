@@ -16,12 +16,14 @@ function App() {
     }>
   >([]);
 
-  const handleClick = () => {
-    setScore(score + 1);
-    console.log(score);
-  };
-
   const [seconds, setSeconds] = useState(30);
+
+  const handleClick = () => {
+    if (seconds > 0) {
+      setScore(score + 1);
+      console.log(score);
+    }
+  };
 
   useEffect(() => {
     const newFallingImages = imageList.map((item) => ({
@@ -40,6 +42,8 @@ function App() {
         setSeconds(seconds - 1);
       }, 1000);
       return () => clearInterval(timer);
+    } else if (seconds === 0) {
+      console.log("終了");
     }
   }, [seconds]);
 
