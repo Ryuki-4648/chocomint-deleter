@@ -30,5 +30,25 @@
   {
     "id": 8,
     "path": "./img/img08.png"
+  },
+  {
+    "id": 9,
+    "path": "./img/img09.png"
+  },
+  {
+    "id": 10,
+    "path": "./img/img10.png"
+  },
+  {
+    "id": 11,
+    "path": "./img/img11.png"
+  },
+  {
+    "id": 12,
+    "path": "./img/img12.png"
+  },
+  {
+    "id": 13,
+    "path": "./img/img13.png"
   }
 ]

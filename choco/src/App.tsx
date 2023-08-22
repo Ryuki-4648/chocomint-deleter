@@ -48,21 +48,21 @@ function App() {
   }, [seconds]);
 
   return (
-    <div className="App h-screen overflow-hidden">
-      <header className="App-header">
-        {/* <img src={logo} className="App-logo" alt="logo" /> */}
-      </header>
-      <p className="text-3xl font-bold text-center">
-        上から降ってくるチョコミントをクリックしよう
-      </p>
-      <div className="falling-container">
+    <div className="App h-screen px-10 pt-10 pb-20">
+      {/* <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+      </header> */}
+      <div className="falling-container bg-white h-full relative overflow-hidden rounded-xl">
+        <p className="text-3xl font-bold text-center absolute top-4 left-1/2 -translate-x-1/2">
+          上から降ってくるチョコミントをクリックしよう
+        </p>
         {fallingImages.map((item) => (
           <img
             key={item.id}
             src={item.path}
             alt=""
             onClick={handleClick}
-            className="falling-image"
+            className="falling-image z-0"
             style={{
               top: `${item.top}px`,
               left: `${item.left}px`,
@@ -71,10 +71,12 @@ function App() {
           />
         ))}
       </div>
-      <p>
-        スコア: <span>{score}</span>
-      </p>
-      <p>残り {seconds}秒</p>
+      <div className="px-6 py-2 flex justify-between content-center">
+        <p className="text-gray-900 text-5xl font-semibold">残り {seconds}秒</p>
+        <p className="text-gray-900 text-5xl font-semibold">
+          スコア: <span>{score}</span>
+        </p>
+      </div>
     </div>
   );
 }
