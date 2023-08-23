@@ -29,9 +29,9 @@ function App() {
     const newFallingImages = imageList.map((item) => ({
       id: item.id,
       path: item.path,
-      top: Math.random() * (window.innerHeight - 10), // 画面内のランダムな位置
-      left: Math.random() * (window.innerWidth - 10), // 画面内のランダムな位置
-      delay: Math.random() * 1, // 遅延時間 (秒)
+      top: Math.random() * (window.innerHeight - 100),
+      left: Math.random() * (window.innerWidth - 100),
+      delay: Math.random() * 1,
     }));
     setFallingImages(newFallingImages);
   }, []);
@@ -44,6 +44,7 @@ function App() {
       return () => clearInterval(timer);
     } else if (seconds === 0) {
       console.log("終了");
+      setFallingImages([]);
     }
   }, [seconds]);
 
