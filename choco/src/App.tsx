@@ -16,7 +16,8 @@ function App() {
     }>
   >([]);
 
-  const [seconds, setSeconds] = useState(30);
+  const [seconds, setSeconds] = useState(10);
+  const [finishText, setFinishText] = useState("");
 
   const handleClick = (clickedId: number) => {
     if (seconds > 0) {
@@ -49,6 +50,7 @@ function App() {
     } else if (seconds === 0) {
       console.log("終了");
       setFallingImages([]);
+      setFinishText("終了!");
     }
   }, [seconds]);
 
@@ -75,6 +77,7 @@ function App() {
             }}
           />
         ))}
+        <p>{finishText}</p>
       </div>
       <div className="px-6 py-2 flex justify-between content-center">
         <p className="text-gray-900 text-5xl font-semibold">残り {seconds}秒</p>
