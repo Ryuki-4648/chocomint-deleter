@@ -18,10 +18,14 @@ function App() {
 
   const [seconds, setSeconds] = useState(30);
 
-  const handleClick = () => {
+  const handleClick = (clickedId: number) => {
     if (seconds > 0) {
       setScore(score + 1);
       console.log(score);
+      const updatedFallingImages = fallingImages.filter(
+        (item) => item.id !== clickedId,
+      );
+      setFallingImages(updatedFallingImages);
     }
   };
 
@@ -62,7 +66,7 @@ function App() {
             key={item.id}
             src={item.path}
             alt=""
-            onClick={handleClick}
+            onClick={() => handleClick(item.id)}
             className="falling-image z-0"
             style={{
               top: `${item.top}px`,
