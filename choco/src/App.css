@@ -8,7 +8,7 @@
 
 .falling-image {
   position: absolute;
-  animation: falling 3s linear infinite;
+  animation: falling 5s linear infinite;
   cursor: pointer;
 }
 @keyframes falling {

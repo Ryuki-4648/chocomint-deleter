@@ -1,11 +1,9 @@
-//import logo from "./logo.svg";
 import "./App.css";
 import imageList from "./data/imageList.json";
 import { useEffect, useState } from "react";
 
 function App() {
   const [score, setScore] = useState(0);
-  //const [fallingImages, setFallingImages] = useState([]);
   const [fallingImages, setFallingImages] = useState<
     Array<{
       id: number;
@@ -18,6 +16,7 @@ function App() {
 
   const [seconds, setSeconds] = useState(10);
   const [finishText, setFinishText] = useState("");
+  const [resetButton, setResetButton] = useState(false);
 
   const handleClick = (clickedId: number) => {
     if (seconds > 0) {
@@ -34,9 +33,9 @@ function App() {
     const newFallingImages = imageList.map((item) => ({
       id: item.id,
       path: item.path,
-      top: Math.random() * (window.innerHeight - 100),
-      left: Math.random() * (window.innerWidth - 100),
-      delay: Math.random() * 1,
+      top: Math.random() * window.innerHeight,
+      left: Math.random() * window.innerWidth,
+      delay: Math.random() * 1.5,
     }));
     setFallingImages(newFallingImages);
   }, []);
@@ -50,16 +49,14 @@ function App() {
     } else if (seconds === 0) {
       console.log("終了");
       setFallingImages([]);
+      setResetButton(true);
       setFinishText("終了!");
     }
   }, [seconds]);
 
   return (
     <div className="App h-screen px-10 pt-10 pb-20">
-      {/* <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-      </header> */}
-      <div className="falling-container bg-white h-full relative overflow-hidden rounded-xl">
+      <div className="falling-container bg-white h-full relative overflow-hidden rounded-3xl">
         <p className="text-3xl font-bold text-center absolute top-4 left-1/2 -translate-x-1/2">
           上から降ってくるチョコミントをクリックしよう
         </p>
@@ -67,7 +64,7 @@ function App() {
           <img
             key={item.id}
             src={item.path}
-            alt=""
+            alt="チョコミントのイラスト"
             onClick={() => handleClick(item.id)}
             className="falling-image z-0"
             style={{
@@ -77,7 +74,12 @@ function App() {
             }}
           />
         ))}
-        <p>{finishText}</p>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+          <p className="text-6xl font-semibold text-center mb-8">
+            {finishText}
+          </p>
+          {resetButton && <button className="text-xl">リベンジする</button>}
+        </div>
       </div>
       <div className="px-6 py-2 flex justify-between content-center">
         <p className="text-gray-900 text-5xl font-semibold">残り {seconds}秒</p>
