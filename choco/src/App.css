@@ -2,13 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-.App {
-  background-image: linear-gradient(135deg, rgba(253, 219, 146, 1), rgba(209, 253, 254, 1));
-}
-
 .falling-image {
   position: absolute;
-  animation: falling 5s linear infinite;
+  animation: falling 4s linear infinite;
   cursor: pointer;
 }
 @keyframes falling {

@@ -14,8 +14,9 @@ function App() {
     }>
   >([]);
 
-  const [seconds, setSeconds] = useState(10);
+  const [seconds, setSeconds] = useState(20);
   const [finishText, setFinishText] = useState("");
+  const [startText, setStartText] = useState(true);
   const [resetButton, setResetButton] = useState(false);
 
   const handleClick = (clickedId: number) => {
@@ -29,7 +30,23 @@ function App() {
     }
   };
 
-  useEffect(() => {
+  const onClickResetButton = () => {
+    setSeconds(20);
+    setScore(0);
+    setFinishText("");
+    setResetButton(false);
+    setFallingImages(
+      imageList.map((item) => ({
+        id: item.id,
+        path: item.path,
+        top: Math.random() * window.innerHeight,
+        left: Math.random() * window.innerWidth,
+        delay: Math.random() * 1.5,
+      })),
+    );
+  };
+
+  const onClickStartButton = () => {
     const newFallingImages = imageList.map((item) => ({
       id: item.id,
       path: item.path,
@@ -38,7 +55,8 @@ function App() {
       delay: Math.random() * 1.5,
     }));
     setFallingImages(newFallingImages);
-  }, []);
+    setStartText(false);
+  };
 
   useEffect(() => {
     if (seconds > 0) {
@@ -51,15 +69,32 @@ function App() {
       setFallingImages([]);
       setResetButton(true);
       setFinishText("終了!");
+      setStartText(false);
     }
   }, [seconds]);
 
   return (
-    <div className="App h-screen px-10 pt-10 pb-20">
-      <div className="falling-container bg-white h-full relative overflow-hidden rounded-3xl">
-        <p className="text-3xl font-bold text-center absolute top-4 left-1/2 -translate-x-1/2">
-          上から降ってくるチョコミントをクリックしよう
+    <div className="App h-screen pt-16 pb-20 bg-color01">
+      <p className="text-white text-5xl font-semibold absolute right-6 top-2">
+        {seconds}
+      </p>
+      <div className="falling-container bg-white h-full relative overflow-hidden">
+        <p className="text-2xl font-bold text-center absolute top-5 left-1/2 -translate-x-1/2">
+          チョコミントをクリックして消していこう
         </p>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+          {startText && (
+            <p className="text-color01 text-5xl font-bold">CHOCOMINT DELETER</p>
+          )}
+          {startText && (
+            <button
+              onClick={onClickStartButton}
+              className="text-color01 font-bold mt-4"
+            >
+              スタートする
+            </button>
+          )}
+        </div>
         {fallingImages.map((item) => (
           <img
             key={item.id}
@@ -78,14 +113,18 @@ function App() {
           <p className="text-6xl font-semibold text-center mb-8">
             {finishText}
           </p>
-          {resetButton && <button className="text-xl">リベンジする</button>}
+          {resetButton && (
+            <button className="text-xl" onClick={onClickResetButton}>
+              リベンジする
+            </button>
+          )}
         </div>
       </div>
-      <div className="px-6 py-2 flex justify-between content-center">
-        <p className="text-gray-900 text-5xl font-semibold">残り {seconds}秒</p>
-        <p className="text-gray-900 text-5xl font-semibold">
-          スコア: <span>{score}</span>
+      <div className="px-6 py-2 flex justify-center items-center">
+        <p className="text-white text-2xl font-semibold mr-3 tracking-wider">
+          SCORE
         </p>
+        <p className="text-white text-6xl font-semibold">{score}</p>
       </div>
     </div>
   );
