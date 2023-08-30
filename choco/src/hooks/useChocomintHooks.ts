@@ -54,15 +54,22 @@ export const useChocomintHooks = () => {
     }));
     setFallingImages(newFallingImages);
     setStartText(false);
+
+    const countdownTimer = setInterval(() => {
+      setSeconds((prevSeconds) => prevSeconds - 1); // seconds - 1だと1秒しか減らない
+    }, 1000);
+    const clearTimer = () => clearInterval(countdownTimer);
+    setTimeout(clearTimer, 20000);
   };
 
   useEffect(() => {
-    if (seconds > 0) {
-      const timer = setInterval(() => {
+    /**
+     *  const timer = setInterval(() => {
         setSeconds(seconds - 1);
       }, 1000);
       return () => clearInterval(timer);
-    } else if (seconds === 0) {
+     */
+    if (seconds === 0) {
       console.log("終了");
       setFallingImages([]);
       setResetButton(true);
