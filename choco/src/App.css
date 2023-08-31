@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  font-family: 'Kaisei Decol', serif;
+}
+
 .falling-image {
   position: absolute;
   animation: falling 4s linear infinite;
@@ -11,4 +15,8 @@
   to {
     transform: translateY(100vh);
   }
+}
+
+.font01 {
+  font-family: 'Righteous', cursive;
 }
