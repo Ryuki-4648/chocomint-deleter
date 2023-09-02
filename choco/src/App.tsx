@@ -1,6 +1,33 @@
 import "./App.css";
 import { useChocomintHooks } from "./hooks/useChocomintHooks";
 
+function Button({ onClick, children }) {
+  return <button onClick={onClick}>{children}</button>;
+}
+
+function TriviaButton({ buttonText }) {
+  function handleTriviaClick() {
+    alert(
+      `Chocomint ${buttonText}!　\n　\nチョコミントが嫌いな人は約6割。\n特に近畿地方ではチョコミント味の馴染みが薄く、嫌いな人が多いと考えられる。`,
+    );
+  }
+  return <Button onClick={handleTriviaClick}>{buttonText}</Button>;
+}
+
+function QuizButton() {
+  return (
+    <Button
+      onClick={() =>
+        alert(
+          "チョコミントアイスを最初に販売したのは？　\n　\n　\nこたえは1945年にオープンしたアメリカの31のメニュー！",
+        )
+      }
+    >
+      Quiz
+    </Button>
+  );
+}
+
 function App() {
   const {
     score,
@@ -76,6 +103,8 @@ function App() {
           {score}
         </p>
       </div>
+      <TriviaButton buttonText="Trivia" />
+      <QuizButton />
     </div>
   );
 }
