@@ -1,22 +1,41 @@
 import "./App.css";
 import { useChocomintHooks } from "./hooks/useChocomintHooks";
 
-function Button({ onClick, children }) {
-  return <button onClick={onClick}>{children}</button>;
+type Props = {
+  onClick?: () => void;
+  buttonText?: string;
+  children?: React.ReactNode;
+  className?: string;
+};
+
+function Button({ onClick, children, className }: Props) {
+  return (
+    <button
+      onClick={onClick}
+      className={`absolute text-white tracking-wider border-white border rounded-2xl w-24 text-md font01 h-8 ${className}`}
+    >
+      {children}
+    </button>
+  );
 }
 
-function TriviaButton({ buttonText }) {
+function InfoButton({ buttonText, className }: Props) {
   function handleTriviaClick() {
     alert(
       `Chocomint ${buttonText}!　\n　\nチョコミントが嫌いな人は約6割。\n特に近畿地方ではチョコミント味の馴染みが薄く、嫌いな人が多いと考えられる。`,
     );
   }
-  return <Button onClick={handleTriviaClick}>{buttonText}</Button>;
+  return (
+    <Button onClick={handleTriviaClick} className={className}>
+      {buttonText}
+    </Button>
+  );
 }
 
-function QuizButton() {
+function QuizButton({ className }: Props) {
   return (
     <Button
+      className={className}
       onClick={() =>
         alert(
           "チョコミントアイスを最初に販売したのは？　\n　\n　\nこたえは1945年にオープンしたアメリカの31のメニュー！",
@@ -42,7 +61,8 @@ function App() {
   } = useChocomintHooks();
 
   return (
-    <div className="App h-screen pt-12 lg:pt-16 pb-20 bg-color01">
+    <div className="App h-screen pt-12 lg:pt-16 pb-20 bg-color01 relaive">
+      <QuizButton className="left-8 top-4" />
       <p className="text-white text-4xl lg:text-5xl font-semibold absolute right-6 top-1 lg:top-2 font01">
         {seconds}
       </p>
@@ -95,7 +115,8 @@ function App() {
           )}
         </div>
       </div>
-      <div className="px-6 py-2 flex justify-center items-center">
+      <div className="px-6 py-2 flex justify-center items-center relative">
+        <InfoButton buttonText="Info" className="left-8" />
         <p className="text-white text-2xl md:text-3xl font-semibold mr-3 tracking-widest font01">
           SCORE
         </p>
@@ -103,8 +124,6 @@ function App() {
           {score}
         </p>
       </div>
-      <TriviaButton buttonText="Trivia" />
-      <QuizButton />
     </div>
   );
 }
