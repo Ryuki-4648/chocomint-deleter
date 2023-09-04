@@ -1,51 +1,7 @@
 import "./App.css";
+import { InfoButton } from "./components/ui/button/InfoButton";
+import { QuizButton } from "./components/ui/button/QuizButton";
 import { useChocomintHooks } from "./hooks/useChocomintHooks";
-
-type Props = {
-  onClick?: () => void;
-  buttonText?: string;
-  children?: React.ReactNode;
-  className?: string;
-};
-
-function Button({ onClick, children, className }: Props) {
-  return (
-    <button
-      onClick={onClick}
-      className={`absolute text-white tracking-wider border-white border rounded-2xl w-24 text-md font01 h-8 ${className}`}
-    >
-      {children}
-    </button>
-  );
-}
-
-function InfoButton({ buttonText, className }: Props) {
-  function handleTriviaClick() {
-    alert(
-      `Chocomint ${buttonText}!　\n　\nチョコミントが嫌いな人は約6割。\n特に近畿地方ではチョコミント味の馴染みが薄く、嫌いな人が多いと考えられる。`,
-    );
-  }
-  return (
-    <Button onClick={handleTriviaClick} className={className}>
-      {buttonText}
-    </Button>
-  );
-}
-
-function QuizButton({ className }: Props) {
-  return (
-    <Button
-      className={className}
-      onClick={() =>
-        alert(
-          "チョコミントアイスを最初に販売したのは？　\n　\n　\nこたえは1945年にオープンしたアメリカの31のメニュー！",
-        )
-      }
-    >
-      Quiz
-    </Button>
-  );
-}
 
 function App() {
   const {
