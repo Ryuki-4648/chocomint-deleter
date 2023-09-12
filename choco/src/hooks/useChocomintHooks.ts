@@ -17,6 +17,17 @@ export const useChocomintHooks = () => {
     }>
   >([]);
 
+  const startCountdownTimer = () => {
+    const countdownTimer = setInterval(() => {
+      setSeconds((prevSeconds) => prevSeconds - 1); // seconds - 1だと1秒しか減らない
+    }, 1000);
+    return countdownTimer;
+  };
+
+  const clearCountdownTimer = (timer: NodeJS.Timer) => {
+    clearInterval(timer);
+  };
+
   const handleClick = (clickedId: number) => {
     if (seconds > 0) {
       setScore(score + 1);
@@ -42,6 +53,8 @@ export const useChocomintHooks = () => {
         delay: Math.random() * 1.5,
       })),
     );
+    const countdownTimer = startCountdownTimer();
+    setTimeout(() => clearCountdownTimer(countdownTimer), 20000);
   };
 
   const onClickStartButton = () => {
@@ -55,11 +68,8 @@ export const useChocomintHooks = () => {
     setFallingImages(newFallingImages);
     setStartText(false);
 
-    const countdownTimer = setInterval(() => {
-      setSeconds((prevSeconds) => prevSeconds - 1); // seconds - 1だと1秒しか減らない
-    }, 1000);
-    const clearTimer = () => clearInterval(countdownTimer);
-    setTimeout(clearTimer, 20000);
+    const countdownTimer = startCountdownTimer();
+    setTimeout(() => clearCountdownTimer(countdownTimer), 20000);
   };
 
   useEffect(() => {
