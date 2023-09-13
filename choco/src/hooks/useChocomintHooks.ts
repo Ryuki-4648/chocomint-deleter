@@ -61,7 +61,7 @@ export const useChocomintHooks = () => {
     const newFallingImages = imageList.map((item) => ({
       id: item.id,
       path: item.path,
-      top: Math.random() * window.innerHeight,
+      top: Math.random() * window.innerHeight * 1.4,
       left: Math.random() * window.innerWidth,
       delay: Math.random() * 1.5,
     }));
