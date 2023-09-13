@@ -18,15 +18,20 @@ function App() {
 
   return (
     <div className="App h-screen pt-12 lg:pt-16 pb-20 bg-color01 relaive">
-      <QuizButton className="left-8 top-4" />
+      <QuizButton className="left-8 top-2 lg:top-4" />
       <p className="text-white text-4xl lg:text-5xl font-semibold absolute right-6 top-1 lg:top-2 font01">
         {seconds}
       </p>
       <div className="falling-container bg-white h-full relative overflow-hidden text-gray-600">
         {startText && (
-          <p className="text-md lg:text-xl text-center absolute top-10 left-1/2 -translate-x-1/2 w-full">
-            チョコミントをクリックして消していこう！
-          </p>
+          <>
+            <div className="text-center absolute top-10 tracking-widest left-1/2 -translate-x-1/2 w-full">
+              <p className="text-md lg:text-xl">
+                チョコミントをクリックして消していこう！
+              </p>
+              <p className="text-sm mt-2 lg:text-md">制限時間：20秒</p>
+            </div>
+          </>
         )}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center w-full">
           {startText && (
