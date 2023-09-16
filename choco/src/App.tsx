@@ -27,7 +27,9 @@ function App() {
           <>
             <div className="text-center absolute top-10 tracking-widest left-1/2 -translate-x-1/2 w-full">
               <p className="text-md lg:text-xl">
-                チョコミントをクリックして消していこう！
+                チョコミントをクリックして
+                <br className="block md:hidden" />
+                消していこう！
               </p>
               <p className="text-sm mt-2 lg:text-md">制限時間：20秒</p>
             </div>
@@ -54,7 +56,7 @@ function App() {
             src={item.path}
             alt="チョコミントのイラスト"
             onClick={() => handleClick(item.id)}
-            className="falling-image z-0"
+            className="falling-image z-0 scale-75 md:scale-100"
             style={{
               top: `${item.top}px`,
               left: `${item.left}px`,
@@ -78,12 +80,14 @@ function App() {
       </div>
       <div className="px-6 py-2 flex justify-center items-center relative">
         <InfoButton buttonText="Info" className="left-8" />
-        <p className="text-white text-2xl md:text-3xl font-semibold mr-3 tracking-widest font01">
-          SCORE
-        </p>
-        <p className="text-white text-5xl md:text-6xl font-semibold font01">
-          {score}
-        </p>
+        <div className="flex justify-center items-center ml-10 md:ml-0">
+          <p className="text-white text-2xl md:text-3xl font-semibold mr-3 tracking-widest font01">
+            SCORE
+          </p>
+          <p className="text-white text-5xl md:text-6xl font-semibold font01">
+            {score}
+          </p>
+        </div>
       </div>
     </div>
   );
